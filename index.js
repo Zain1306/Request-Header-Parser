@@ -5,16 +5,19 @@
 var express = require('express');
 var app = express();
 
+var listener = app.listen(process.env.PORT, function () {
+  console.log('Your app is listening on port ' + listener.address().port);
+});
 
-let responseObject = {}
-
-app.get('/api/:date?', (request, response) => {
-  let input = request.params.data
+app.get('/api/timestamp/:input', (request, response) => {
+  let input = request.params.input
   
   if(input.includes('-')){
+    /* Date String */
     responseObject['unix'] = new Date(input).getTime()
     responseObject['utc'] = new Date(input).toUTCString()
   }else{
+    /* Timestamp */
     input = parseInt(input)
     
     responseObject['unix'] = new Date(input).getTime()
@@ -29,7 +32,7 @@ app.get('/api/:date?', (request, response) => {
   response.json(responseObject)
 })
 
-app.get('/api/:date?', (request, response) => {
+app.get('/api/timestamp', (request, response) => {
   responseObject['unix'] = new Date().getTime()
   responseObject['utc'] = new Date().toUTCString()
   
