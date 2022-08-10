@@ -9,19 +9,17 @@ var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
 
-app.get('/api/timestamp/:input', (request, response) => {
-  let input = request.params.input
+app.get('//api/:date?', (request, response) => {
+  let input = request.params.date
   
   if(input.includes('-')){
-    /* Date String */
-    responseObject['unix'] = new Date(input).getTime()
-    responseObject['utc'] = new Date(input).toUTCString()
+    responseObject['unix'] = new Date(date).getTime()
+    responseObject['utc'] = new Date(date).toUTCString()
   }else{
-    /* Timestamp */
-    input = parseInt(input)
+    input = parseInt(date)
     
-    responseObject['unix'] = new Date(input).getTime()
-    responseObject['utc'] = new Date(input).toUTCString()
+    responseObject['unix'] = new Date(date).getTime()
+    responseObject['utc'] = new Date(date).toUTCString()
   }
   
   if(!responseObject['unix'] || !responseObject['utc']){
