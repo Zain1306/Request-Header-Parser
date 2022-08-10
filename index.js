@@ -30,7 +30,7 @@ app.get('//api/:date?', (request, response) => {
   response.json(responseObject)
 })
 
-app.get('/api/timestamp', (request, response) => {
+app.get('/api', (request, response) => {
   responseObject['unix'] = new Date().getTime()
   responseObject['utc'] = new Date().toUTCString()
   
