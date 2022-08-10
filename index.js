@@ -8,8 +8,8 @@ var app = express();
 
 let responseObject = {}
 
-app.get('/api/:input?', (request, response) => {
-  let input = request.params.input
+app.get('/api/:date?', (request, response) => {
+  let input = request.params.date
   
   if(input.includes('-')){
     responseObject['unix'] = new Date(input).getTime()
