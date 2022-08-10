@@ -9,7 +9,7 @@ var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
 
-app.get('//api/:date?', (request, response) => {
+app.get('/api/:date?', (request, response) => {
   let input = request.params.date
   
   if(input.includes('-')){
