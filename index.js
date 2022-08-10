@@ -5,8 +5,8 @@
 var express = require('express');
 var app = express();
 
-app.get('/api/timestamp/:input', (request, response) => {
-  let input = request.params.input
+app.get('/api/:date?', (request, response) => {
+  let input = request.params.date;
   
   if(input.includes('-')){
     /* Date String */
@@ -28,7 +28,7 @@ app.get('/api/timestamp/:input', (request, response) => {
   response.json(responseObject)
 })
 
-app.get('/api/timestamp', (request, response) => {
+app.get('/api', (request, response) => {
   responseObject['unix'] = new Date().getTime()
   responseObject['utc'] = new Date().toUTCString()
   
