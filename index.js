@@ -8,15 +8,13 @@ var app = express();
 
 let responseObject = {}
 
-app.get('/api/timestamp/:input', (request, response) => {
+app.get('/api/:input', (request, response) => {
   let input = request.params.input
   
   if(input.includes('-')){
-    /* Date String */
     responseObject['unix'] = new Date(input).getTime()
     responseObject['utc'] = new Date(input).toUTCString()
   }else{
-    /* Timestamp */
     input = parseInt(input)
     
     responseObject['unix'] = new Date(input).getTime()
