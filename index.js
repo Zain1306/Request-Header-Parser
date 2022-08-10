@@ -5,15 +5,13 @@
 var express = require('express');
 var app = express();
 
-app.get('/api/:date?', (request, response) => {
+app.get('/api/:date', (request, response) => {
   let input = request.params.date;
   
   if(input.includes('-')){
-    /* Date String */
     responseObject['unix'] = new Date(input).getTime()
     responseObject['utc'] = new Date(input).toUTCString()
   }else{
-    /* Timestamp */
     input = parseInt(input)
     
     responseObject['unix'] = new Date(input).getTime()
