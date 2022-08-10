@@ -13,13 +13,13 @@ app.get('//api/:date?', (request, response) => {
   let input = request.params.date
   
   if(input.includes('-')){
-    responseObject['unix'] = new Date(date).getTime()
-    responseObject['utc'] = new Date(date).toUTCString()
+    responseObject['unix'] = new Date(input).getTime()
+    responseObject['utc'] = new Date(input).toUTCString()
   }else{
-    input = parseInt(date)
+    input = parseInt(input)
     
-    responseObject['unix'] = new Date(date).getTime()
-    responseObject['utc'] = new Date(date).toUTCString()
+    responseObject['unix'] = new Date(input).getTime()
+    responseObject['utc'] = new Date(input).toUTCString()
   }
   
   if(!responseObject['unix'] || !responseObject['utc']){
