@@ -83,7 +83,7 @@ app.get('/api/:date?', (request, response) => {
   response.json(responseObject)
 })
 
-app.get("/api/timestamp", (req, res)=>{
+app.get("/api", (req, res)=>{
   let date = new Date();
   
   return res.json({
