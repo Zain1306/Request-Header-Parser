@@ -47,9 +47,6 @@ app.get("/", function (req, res) {
 });
 
 // your first API endpoint... 
-app.get("/api/hello", function (req, res) {
-  res.json({greeting: 'hello API'});
-});
 
 
 
@@ -64,11 +61,9 @@ app.get('/api/:date?', (request, response) => {
   let input = request.params.date
   
   if(input.includes(' ') || input.includes('-')){
-    /* Date String */
     responseObject['unix'] = new Date(input).getTime()
     responseObject['utc'] = new Date(input).toUTCString()
   }else{
-    /* Timestamp */
     input = parseInt(input)
     
     responseObject['unix'] = new Date(input).getTime()
