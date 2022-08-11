@@ -60,10 +60,10 @@ var listener = app.listen(process.env.PORT, function () {
 
 let responseObject = {}
 
-app.get('/api/timestamp/:input', (request, response) => {
-  let input = request.params.input
+app.get('/api/timestamp/:date?', (request, response) => {
+  let input = request.params.date
   
-  if(input.includes('-')){
+  if(input.includes(' ') || input.includes('-')){
     /* Date String */
     responseObject['unix'] = new Date(input).getTime()
     responseObject['utc'] = new Date(input).toUTCString()
