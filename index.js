@@ -5,33 +5,33 @@
 var express = require('express');
 var app = express();
 
-app.get('/api/:date?', (request, response) => {
-  let input = request.params.date;
+// app.get('/api/:date?', (request, response) => {
+//   let input = request.params.date;
   
-  if(input.includes(' ') || input.includes('-')){
-    responseObject['unix'] = new Date(input).getTime()
-    responseObject['utc'] = new Date(input).toUTCString()
-  }else{
-    input = parseInt(input)
+//   if(input.includes(' ') || input.includes('-')){
+//     responseObject['unix'] = new Date(input).getTime()
+//     responseObject['utc'] = new Date(input).toUTCString()
+//   }else{
+//     input = parseInt(input)
     
-    responseObject['unix'] = new Date(input).getTime()
-    responseObject['utc'] = new Date(input).toUTCString()
-  }
+//     responseObject['unix'] = new Date(input).getTime()
+//     responseObject['utc'] = new Date(input).toUTCString()
+//   }
   
-  if(!responseObject['unix'] || !responseObject['utc']){
-    response.json({error: 'Invalid Date'})
-  }
+//   if(!responseObject['unix'] || !responseObject['utc']){
+//     response.json({error: 'Invalid Date'})
+//   }
   
   
-  response.json(responseObject)
-})
+//   response.json(responseObject)
+// })
 
-app.get('/api', (request, response) => {
-  responseObject['unix'] = new Date().getTime()
-  responseObject['utc'] = new Date().toUTCString()
+// app.get('/api', (request, response) => {
+//   responseObject['unix'] = new Date().getTime()
+//   responseObject['utc'] = new Date().toUTCString()
   
-  response.json(responseObject)
-})
+//   response.json(responseObject)
+// })
 
 // enable CORS (https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
 // so that your API is remotely testable by FCC 
@@ -58,3 +58,34 @@ var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
 
+let responseObject = {}
+
+app.get('/api/timestamp/:input', (request, response) => {
+  let input = request.params.input
+  
+  if(input.includes('-')){
+    /* Date String */
+    responseObject['unix'] = new Date(input).getTime()
+    responseObject['utc'] = new Date(input).toUTCString()
+  }else{
+    /* Timestamp */
+    input = parseInt(input)
+    
+    responseObject['unix'] = new Date(input).getTime()
+    responseObject['utc'] = new Date(input).toUTCString()
+  }
+  
+  if(!responseObject['unix'] || !responseObject['utc']){
+    response.json({error: 'Invalid Date'})
+  }
+  
+  
+  response.json(responseObject)
+})
+
+app.get('/api/timestamp', (request, response) => {
+  responseObject['unix'] = new Date().getTime()
+  responseObject['utc'] = new Date().toUTCString()
+  
+  response.json(responseObject)
+})
