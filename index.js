@@ -83,7 +83,7 @@ app.get('/api/:date?', (request, response) => {
   response.json(responseObject)
 })
 
-app.get("/api", (req, res)=>{
+app.get("/ ", (req, res)=>{
   let date = new Date();
   let UTC = date.getTime()+20000;
   UTC = new Date(UTC);
