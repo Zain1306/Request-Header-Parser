@@ -85,7 +85,9 @@ app.get('/api/:date?', (request, response) => {
 
 app.get("/api", (req, res)=>{
   let date = new Date();
-  let UTC = date.toUTCString();
-  let UNIX = date.getTime();
-  res.json({ unix: UNIX, utc: UTC });
+  let UTC = date.getTime()+20000;
+  UTC = new Date(UTC);
+  UTS = UTC.toUTCString();
+  let UNIX = date.getTime()+20000;
+  res.json({ unix: UNIX, utc: UTS });
 })
