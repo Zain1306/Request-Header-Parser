@@ -46,6 +46,14 @@ app.get("/", function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
+app.get("/api", (req, res)=>{
+  let date = new Date();
+  
+  return res.json({
+    'unix': date.getTime(), 
+    'utc': date.toUTCString()
+  });  
+});
 // your first API endpoint... 
 
 
@@ -78,11 +86,3 @@ app.get('/api/:date?', (request, response) => {
   response.json(responseObject)
 })
 
-app.get("/api", (req, res)=>{
-  let date = new Date();
-  
-  return res.json({
-    'unix': date.getTime(), 
-    'utc': date.toUTCString()
-  });  
-});
