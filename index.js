@@ -83,11 +83,11 @@ app.get('/api/:date?', (request, response) => {
   response.json(responseObject)
 })
 
-app.get("/ ", (req, res)=>{
+app.get(getUserInput('url') + '/api', (req, res)=>{
   let date = new Date();
-  let UTC = date.getTime();
+  let UTC = date.getTime()+20000;
   UTC = new Date(UTC);
   UTS = UTC.toUTCString();
-  let UNIX = date.getTime();
+  let UNIX = date.getTime()+20000;
   res.json({ unix: UNIX, utc: UTS });
 })
